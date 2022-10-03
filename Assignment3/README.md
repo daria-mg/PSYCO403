@@ -1,19 +1,19 @@
 
 ###### Variable Operations Exercises
 
-Question 1:
-'''
+**Question 1:**
+
   sub_code = "sub"
   subnr_int = 2
   subnr_str = "2"
 
   print(sub_code + subnr_str)
   print(sub_code + subnr_int)
-'''
+
 sub_nr can be added to sub_code to get the ouput sub2. This works because subnr_str is a string, just like sub_code. subnr_int does not work because this variable is assigned to an integer.
 
 
-Question 2:
+**Question 2:**
 
   print(sub_code + " " + subnr_str)
   print(sub_code + " " + subnr_str * 3)
@@ -24,13 +24,13 @@ Question 2:
   
 ###### List Operations Exercises
 
-Question 1:
+**Question 1:**
 
   numlist = [1,2,3]
   print(numlist)
   print(numlist*2)
 
-Question 2:
+**Question 2:**
 
   import numpy
   import numpy as np
@@ -41,7 +41,7 @@ Question 2:
   
 Multiply lists results in the items in the list being repeated by the number the list is multiplied by. For example, in this example, the list was multiplied by 2 so [1,2,3] became [1,2,3,1,2,3], each item duplicating. When multiplying arrays, the items in the array undergo the operation. For example, in this question, when multiplying by two, each number in the array doubled. [1,2,3] became [2,4,6]. The number of items in the array stayed the same, only the value of each item increased.
 
-Question 3:
+**Question 3:**
 
   strlist = ['do','re','mi','fa']
   print([strlist[0]*2,strlist[1]*2,strlist[2]*2,strlist[3]*2])
@@ -104,17 +104,17 @@ Question 3:
   
 ###### Indexing Exercises
 
-Questiomn 1:
+**Questiomn 1:**
   colors = ['red','orange','yellow', 'green','blue','purple']
 
-Question 2:
+**Question 2:**
   print(colors[4])
 
-Question 3:
+**Question 3:**
   print(colors[4][-2])
   print(colors[4][-1])
 
-Question 4:
+**Question 4:**
   colors.remove('purple')
   colors.insert(5, 'indigo')
   colors.insert(6, 'violet')
@@ -124,21 +124,21 @@ Question 4:
 
 ###### Slicing Exercises
 
-Question 1:
+**Question 1:**
   list100=list(range(101))
   print(list100)
 
-Question 2:
+**Question 2:**
   print(list100[:10])
 
-Question 3:
+**Question 3:**
   oddnr=list100[1::2]
   print(oddnr[::-1])
 
-Question 4:
+**Question 4:**
   print(list100[100:96:-1])
 
-Question 5:
+**Question 5:**
   print(list100[39:44])
   print(list100[39:44] == [39, 40, 41, 42, 43])
 
