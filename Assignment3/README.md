@@ -3,13 +3,14 @@
 
 Question 1:
 
+``
   sub_code = "sub"
   subnr_int = 2
   subnr_str = "2"
 
   print(sub_code + subnr_str)
   print(sub_code + subnr_int)
-
+``
 sub_nr can be added to sub_code to get the ouput sub2. This works because subnr_str is a string, just like sub_code. subnr_int does not work because this variable is assigned to an integer.
 
 
