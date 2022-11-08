@@ -159,7 +159,7 @@
 
 #-for loop for nBlocks *
 
-    for block in range(nBlocks)
+    for block in range(nBlocks):
    
    #-present block start message
    
@@ -175,7 +175,7 @@
    
    #-for loop for nTrials *
    
-     for trial in range(nTrials)
+     for trial in range(nTrials):
    
    #-set stimuli and stimulus properties for the current trial
        
