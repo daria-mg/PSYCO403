@@ -129,8 +129,8 @@ CREATION OF WINDOW AND STIMULI
 
 #-define the monitor settings using psychopy functions
 
-    mon = monitors.Monitor('myMonitor', width=32.4, distance=60)
-    mon.setSizePix([1024,768])
+    mon = monitors.Monitor('myMonitor', width=30.4, distance=60)
+    mon.setSizePix([2880,1880])
     mon.save()
 
 #-define the window (size, color, units, fullscreen mode) using psychopy functions
@@ -142,12 +142,56 @@ CREATION OF WINDOW AND STIMULI
 
 ###### Q1.
 
+        main_dir=os.getcwd()
+        print(main_dir)
+        image_dir=os.path.join(main_dir, 'images')
+
+        stimulus = ['face01.jpg', 'face02.jpg','face03.jpg','face04.jpg', 'face05.jpg','face06.jpg','face07.jpg', 'face08.jpg','face09.jpg', 'face10.jpg']
+
+        nTrials=10
+        my_image=visual.ImageStim(win, units="pix", size=(400,400))
+        np.random.shuffle(stimulus)
+
+        for trial in range(nTrials):
+            my_image.image=os.path.join(image_dir, stimulus[trial])
+            my_image.draw()
+            win.flip()
+            event.waitKeys()
+        win.close()
 
 ###### Q2.
 
+        mon=monitors.Monitor('myMonitor', width=30.4, distance=60)
+        mon.setSizePix([2880,1880])
+        mon.save()
+
+        sSize = mon.getSizePix()
+        sWidth = iSize[0]
+        sHeight = iSize[1]
+        win = visual.Window(monitor=mon, fullscr=True)
+
+        text =visual.TextStim(win, text = '+')
+        image=visual.ImageStim(win, units='pix', size = (400,400))
+        image_dir = os.path.join(main_dir, 'images')
+        stimulus = ['face01.jpg', 'face02.jpg','face03.jpg','face04.jpg', 'face05.jpg','face06.jpg','face07.jpg', 'face08.jpg','face09.jpg', 'face10.jpg']
+        nTrials = 10
+
+        horizMult = [-1, 1, 1, -1, -1, 1, 1, -1, -1, 1]
+        vertiMult = [1, 1, -1, -1, 1, 1, -1, -1, 1, 1]
+
+        for trial in range(nTrials):
+            image.image = os.path.join(image_dir, stimulus[trial])
+            image.position = (horizMult[trial] * sWidth/4, verMult[trial] * sHeight/4)
+            image.draw()
+            fixation.draw()
+            win.flip()
+            event.waitKeys()
+
+        win.close()
 
 ###### Q3.
 
+    fixation=visual.TextStim(win, text='+')
 
 ###### Q4.
 =====================
