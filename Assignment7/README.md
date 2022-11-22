@@ -1,28 +1,48 @@
-#WAIT EXERCISES
-#Q1.
+######WAIT EXERCISES
+
+##Q1.
+
 #=====================
+
 #START TRIAL
+
 #===================== 
+
 #-draw fixation
-fix_text.draw()
+
+        fix_text.draw()
+
 #-flip window
-win.flip()
+
+        win.flip()
+
 #-wait time (stimulus duration)
-core.wait(1.0)
+
+        core.wait(1.0)
 
 #-draw image
-my_image.draw()
+
+        my_image.draw()
+
 #-flip window
-win.flip()
+
+        win.flip()
+
 #-wait time (stimulus duration)
-core.wait(1.0)
+
+        core.wait(1.0)
 
 #-draw end trial text
-end_trial_text.draw()
+
+        end_trial_text.draw()
+
 #-flip window
-win.flip()
+
+        win.flip()
+
 #-wait time (stimulus duration)
-core.wait(1.0)
+
+        core.wait(1.0)
 
 
 #CLOCK EXERCISES
