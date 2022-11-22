@@ -1,12 +1,8 @@
-######WAIT EXERCISES
+## WAIT EXERCISES
 
-##Q1.
+###### Q1.
 
-#=====================
-
-#START TRIAL
-
-#===================== 
+#===================== START TRIAL =====================#
 
 #-draw fixation
 
@@ -45,8 +41,10 @@
         core.wait(1.0)
 
 
-#CLOCK EXERCISES
-#Q1.
+
+## CLOCK EXERCISES
+###### Q1.
+
 from psychopy import visual, monitors, event, core
 import os
 import numpy as np
@@ -75,7 +73,7 @@ for trial in range(nTrials):
 
 win.close()
 
-#Q2.
+###### Q2.
 from psychopy import visual, gui, monitors, event, core
 import os
 import numpy as np
@@ -104,7 +102,7 @@ for trial in range(nTrials):
 
 win.close()
 
-#Q3.
+###### Q3.
 from psychopy import visual, monitors, event, core
 import os
 import numpy as np
@@ -138,7 +136,7 @@ for trial in range(nTrials):
 
 win.close()
 
-#Q4.
+###### Q4.
 from psychopy import visual, monitors, event, core
 import os
 import numpy as np
@@ -161,9 +159,7 @@ wait_timer = core.Clock()
 clock_wait_timer = core.Clock()
 countdown_timer = core.CountdownTimer()
 
-#=====================
-#START TRIAL
-#===================== 
+#===================== START TRIAL =====================# 
 
 for trial in range(nTrials):
     my_image.image = os.path.join(image_dir, stimulus[trial])
@@ -187,8 +183,8 @@ for trial in range(nTrials):
 
 win.close()
 
-#FRAME-BASED TIMING EXERCISES 
-#Q1.
+## FRAME-BASED TIMING EXERCISES 
+###### Q1.
 from psychopy import visual, monitors, core, event, logging 
 import os 
 import numpy as np
@@ -241,6 +237,6 @@ for frame_num in range(total_frames):
 
 win.close()
 
-#Q2.
+###### Q2.
 
 
