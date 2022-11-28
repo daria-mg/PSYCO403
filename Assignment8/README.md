@@ -41,3 +41,75 @@ When event.ClearEvents was placed inside vs. outside the trial loop, the results
 
 
 
+# Recording Data Exercises 
+###### Q1
+
+        from psychopy import event, visual, monitors, core
+        import numpy as np
+
+        mon = monitors.Monitor('myMonitor',width=32.4, distance=60)
+        mon.setSizePix([1024,768])
+        win = visual.Window(monitor=mon, size=(400,400), color=(-1,-1,-1))
+
+        nTrials = 4
+        nBlocks = 2
+        my_text = visual.TextStim(win)
+        rt_clock=core.Clock()
+        cd_timer=core.CountdownTimer()
+
+        #Q2 dictionaries:
+        sub_resp = dict()
+        sub_acc = dict()
+        prob = dict()
+        corr_resp = dict()
+        resp_time = dict()
+
+        math_problems = ['1+3=', '1+1=', '3-2=', '4-1=']
+        solutions = [4,2,1,3]
+        prob_sol=list(zip(math_problems, solutions))
+
+        sub_resp = [[0]*nTrials]*nBlocks
+        sub_acc = [[0]*nTrials]*nBlocks
+        prob = [[0]*nTrials]*nBlocks
+        corr_resp = [[0]*nTrials]*nBlocks
+        resp_time = [[0]*nTrials]*nBlocks
+
+        for block in range(nBlocks):
+            sub_resp[block] = [-1]*nTrials
+            sub_acc[block] = [-1]*nTrials
+            prob[block] = [-1]*nTrials
+            corr_resp[block] = [-1]*nTrials
+            resp_time[block] = [-1]*nTrials
+            for trial in range(nTrials):
+                prob[block][trial] = prob_sol[np.random.choice(4)]
+                corr_resp[block][trial] = prob[block][trial][1]
+                rt_clock.reset()
+                cd_timer.add(3)
+                event.clearEvents(eventType='keyboard')
+                count=-1
+                while cd_timer.getTime()>0:
+                    my_text.text = prob[block][trial][0]
+                    my_text.draw()
+                    win.flip()
+                    keys=event.getKeys(keyList=['1','2','3','4','escape'])
+                    if keys:
+                        count=count+1
+                        if count == 0:
+                            resp_time[block][trial]=rt_clock.getTime()
+                            sub_resp[block][trial]=keys[0]
+
+                if sub_resp[block][trial] == str(corr_resp[block][trial]):
+                    sub_acc[block][trial] = 1
+                elif sub_resp[block][trial] != str(corr_resp[block][trial]):
+                    sub_acc[block][trial] = 2
+
+                print('problem=', prob[block][trial], 'correct response=', corr_resp[block][trial], 'subject response=', sub_resp[block][trial], 'subject accuracy=', sub_acc[block][trial], 'response time=', resp_time[block][trial])
+
+        win.close()
+
+        print(prob)
+        print(corr_resp)
+        print(sub_resp)
+        print(sub_acc)
+
+
