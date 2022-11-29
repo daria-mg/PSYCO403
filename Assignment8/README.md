@@ -275,11 +275,72 @@ When event.ClearEvents was placed inside vs. outside the trial loop, the results
 
             with open(filename + '_block%i.txt'%block, 'w') as outfile:
                 json.dump(data_as_dict, outfile)
+                
+        win.close()
 
 
 
 # Read JSON Exercises
 ###### Q1
 
+        import pandas as pd
+        import os 
+        import json as json 
 
-        win.close()
+        filename = 'ParticipantDataA8_savejson'
+        main_dir = os.getcwd()
+        data_dir = os.path.join(main_dir, 'exp', 'data', filename)
+
+        df = pd.read_json(filename + '_block1.txt')
+        print(df)
+
+        print("Pearson r:")
+        print(pd.DataFrame.corr(df, method='pearson'))
+        print("Spearman rho:")
+        print(pd.DataFrame.corr(df, method='spearman'))
+
+        print("response time mean:")
+        print(sum(df['resp_time'])/len(df['resp_time']))
+
+        print("subject accuracy mean:")
+        print(sum(df['resp_time'])/len(df['sub_acc']))
+
+        print("subject response mean:")
+        print(sum(df['sub_resp'])/len(df['sub_resp']))
+
+        print("correct response mean:")
+        print(sum(df['corr_resp'])/len(df['corr_response']))
+
+###### Q2
+
+        import pandas as pd
+        import os 
+        import json as json 
+
+        filename = 'ParticipantDataA8_savejson'
+        main_dir = os.getcwd()
+        data_dir = os.path.join(main_dir, 'exp', 'data', filename)
+
+        df = pd.read_json(filename + '_block1.txt')
+        print(df)
+
+        acc_trials = df.loc[df['sub_acc'] == 1] #1=correctly answered trials; only these will be printed
+        print(acc_trials['resp_time'])
+
+###### Q3
+
+import pandas as pd
+import os 
+import json as json 
+
+filename = 'ParticipantDataA8_savejson'
+main_dir = os.getcwd()
+data_dir = os.path.join(main_dir, 'exp', 'data', filename)
+
+df = pd.read_json(filename + '_block1.txt')
+
+answered_trials = df.loc[df['sub_acc'] != 0]
+print(answered_trials)
+
+
+        
