@@ -113,3 +113,87 @@ When event.ClearEvents was placed inside vs. outside the trial loop, the results
         print(sub_acc)
 
 
+
+# Save CSV Exercises 
+###### Q1
+
+        from psychopy import core, event, visual, monitors
+        import numpy as np
+        import csv
+        import os
+
+        mon = monitors.Monitor('myMonitor',width=32.4, distance=60)
+        mon.setSizePix([1024,768])
+        win = visual.Window(monitor=mon, size=(400,400), color=(-1,-1,-1))
+
+        nBlocks = 2
+        nTrials = 4
+        my_text = visual.TextStim(win)
+        rt_clock = core.Clock()
+        cd_timer = core.CountdownTimer()
+
+        sub_resp = dict()
+        sub_acc = dict()
+        prob = dict()
+        corr_resp = dict()
+        resp_time = dict()
+
+        math_problems = ['1+3=', '1+1=', '3-2=', '4-1=']
+        solutions = [4,2,1,3]
+        prob_sol=list(zip(math_problems, solutions))
+
+        sub_resp = [[0]*nTrials]*nBlocks
+        sub_acc = [[0]*nTrials]*nBlocks
+        prob = [[0]*nTrials]*nBlocks
+        corr_resp = [[0]*nTrials]*nBlocks
+        resp_time = [[0]*nTrials]*nBlocks
+
+        for block in range(nBlocks):
+            sub_resp[block] = [0]*nTrials
+            sub_acc[block] = [0]*nTrials
+            prob[block] = [0]*nTrials
+            corr_resp[block] = [0]*nTrials
+            resp_time[block] = [0]*nTrials
+            for trial in range(nTrials):
+                prob[block][trial] = prob_sol[np.random.choice(4)]
+                corr_resp[block][trial] = prob[block][trial][1]
+                rt_clock.reset()
+                cd_timer.add(3)
+                event.clearEvents(eventType='keyboard')
+                count=-1
+                while cd_timer.getTime()>0:
+                    my_text.text = prob[block][trial][0]
+                    my_text.draw()
+                    win.flip()
+                    keys=event.getKeys(keyList=['1','2','3','4','escape'])
+                    if keys:
+                        count=count+1
+                        if count == 0:
+                            resp_time[block][trial]=rt_clock.getTime()
+                            sub_resp[block][trial]=keys[0]
+
+                if sub_resp[block][trial] == str(corr_resp[block][trial]):
+                    sub_acc[block][trial] = 1
+                elif sub_resp[block][trial] != str(corr_resp[block][trial]):
+                    sub_acc[block][trial] = 2
+
+                print('problem=', prob[block][trial], 'correct response=', corr_resp[block][trial], 'subject response=', sub_resp[block][trial], 'subject accuracy=', sub_acc[block][trial], 'response time=', resp_time[block][trial])
+
+        filename = 'ParticipantData_A8.csv'
+        main_dir = os.getcwd()
+        data_dir = os.path.join(main_dir, 'exp', 'data', filename)
+
+        data_as_dict = [prob, sub_resp, sub_acc, corr_resp, resp_time]
+
+        with open('ParticipantData_A8.csv', 'w', newline='') as csvfile:
+            fieldnames = ['block', 'prob', 'sub_resp', 'sub_acc', 'corr_resp','resp_time']
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+            writer.writeheader()
+            writer.writerow({'block':0, 'prob':prob[0], 'sub_resp':sub_resp[0], 'sub_acc':sub_acc[0], 'corr_resp':corr_resp[0], 'resp_time':resp_time[0]})
+            writer.writerow({'block':1, 'prob':prob[1], 'sub_resp':sub_resp[1], 'sub_acc':sub_acc[1], 'corr_resp':corr_resp[1], 'resp_time':resp_time[1]})
+
+        win.close() 
+        
+
+
