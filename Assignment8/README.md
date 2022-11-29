@@ -329,18 +329,18 @@ When event.ClearEvents was placed inside vs. outside the trial loop, the results
 
 ###### Q3
 
-import pandas as pd
-import os 
-import json as json 
+        import pandas as pd
+        import os 
+        import json as json 
 
-filename = 'ParticipantDataA8_savejson'
-main_dir = os.getcwd()
-data_dir = os.path.join(main_dir, 'exp', 'data', filename)
+        filename = 'ParticipantDataA8_savejson'
+        main_dir = os.getcwd()
+        data_dir = os.path.join(main_dir, 'exp', 'data', filename)
 
-df = pd.read_json(filename + '_block1.txt')
+        df = pd.read_json(filename + '_block1.txt')
 
-answered_trials = df.loc[df['sub_acc'] != 0]
-print(answered_trials)
+        answered_trials = df.loc[df['sub_acc'] != 0]
+        print(answered_trials)
 
 
         
